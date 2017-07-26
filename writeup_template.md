@@ -80,6 +80,8 @@ Here's a [link to my video result](./project_video.mp4)
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 
+For averaging I used the heat map integratively over the whole sequence, multiplying it with 0.6 after each frame and subtracting half its minimum value after that.
+
 Below is an image of the bounding boxes drawn by my pipeline function onto one of the provided test images.
 
 ![alt text][image5]
@@ -93,5 +95,5 @@ Below is an image of the bounding boxes drawn by my pipeline function onto one o
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+Skipping and wobbling of the bounding boxes can be tackled by using more sophisticated techniques of averaging over multiple frames. A Vehicle object can be used to track various properties of vehicle detections, such as its trajectory and when it was last detected. 
 
